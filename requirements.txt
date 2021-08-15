@@ -1,6 +1,4 @@
 torch
 spacy
 transformers
-pyunpack
 Flask
-flask-ngrok
