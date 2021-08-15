@@ -1,4 +1,4 @@
-wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1uZOhZl3oKXf66DCCZIE2O7Aax3OJzfvl' -O all_0729_sd11_lr0.0001_bs2_ga16.zip
+wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1uZOhZl3oKXf66DCCZIE2O7Aax3OJzfvl'
 unzip all_0729_sd11_lr0.0001_bs2_ga16.zip
 mkdir experiments
 mkdir experiments/all_0729_sd11_lr0.0001_bs2_ga16
