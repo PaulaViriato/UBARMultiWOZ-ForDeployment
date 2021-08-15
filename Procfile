@@ -1,0 +1,1 @@
+web: python train.py -mode demo -cfg eval_load_path=experiments/all_0729_sd11_lr0.0001_bs2_ga16/epoch43_trloss0.56_gpt2/

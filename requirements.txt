@@ -1,0 +1,6 @@
+spacy
+transformers
+python-telegram-bot
+pyunpack
+Flask
+flask-ngrok
