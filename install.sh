@@ -1,13 +1,5 @@
-pip install torch
-pip install spacy
-pip install transformers
-pip install python-telegram-bot
-pip install pyunpack
-pip install Flask
-pip install flask-ngrok
-
-gdown --id 1uZOhZl3oKXf66DCCZIE2O7Aax3OJzfvl
-unzip all_0729_sd11_lr0.0001_bs2_ga16.zipl
+wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1uZOhZl3oKXf66DCCZIE2O7Aax3OJzfvl' -O all_0729_sd11_lr0.0001_bs2_ga16.zip
+unzip all_0729_sd11_lr0.0001_bs2_ga16.zip
 mkdir experiments
 mkdir experiments/all_0729_sd11_lr0.0001_bs2_ga16
 mv all_0729_sd11_lr0.0001_bs2_ga16/* experiments/all_0729_sd11_lr0.0001_bs2_ga16
