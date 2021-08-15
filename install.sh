@@ -1,18 +1,18 @@
-pip install torch &>> installoutput.log
-pip install spacy &>> installoutput.log
-pip install transformers &>> installoutput.log
-pip install python-telegram-bot &>> installoutput.log
-pip install pyunpack &>> installoutput.log
-pip install Flask &>> installoutput.log
-pip install flask-ngrok &>> installoutput.log
+pip install torch
+pip install spacy
+pip install transformers
+pip install python-telegram-bot
+pip install pyunpack
+pip install Flask
+pip install flask-ngrok
 
-gdown --id 1uZOhZl3oKXf66DCCZIE2O7Aax3OJzfvl &>> downloadoutput.log
-unzip all_0729_sd11_lr0.0001_bs2_ga16.zipl &>> downloadoutput.log
-mkdir experiments &>> downloadoutput.log
-mkdir experiments/all_0729_sd11_lr0.0001_bs2_ga16 &>> downloadoutput.log
-mv all_0729_sd11_lr0.0001_bs2_ga16/* experiments/all_0729_sd11_lr0.0001_bs2_ga16 &>> downloadoutput.log
+gdown --id 1uZOhZl3oKXf66DCCZIE2O7Aax3OJzfvl
+unzip all_0729_sd11_lr0.0001_bs2_ga16.zipl
+mkdir experiments
+mkdir experiments/all_0729_sd11_lr0.0001_bs2_ga16
+mv all_0729_sd11_lr0.0001_bs2_ga16/* experiments/all_0729_sd11_lr0.0001_bs2_ga16
 
-python -m spacy download en_core_web_sm &>> execoutput.log
+python -m spacy download en_core_web_sm
 python data_analysis.py
 python preprocess.py
 
