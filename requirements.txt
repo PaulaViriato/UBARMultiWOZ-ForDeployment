@@ -7,3 +7,4 @@ pyunpack
 Flask
 flask-ngrok
 nltk
+click
