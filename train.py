@@ -16,20 +16,18 @@ import logging
 import json
 import tqdm
 import numpy as np
-from pyngrok import ngrok
 from torch.utils.tensorboard import SummaryWriter
 from tqdm import tqdm
 
 from flask import Flask, make_response, request
 from flask_ngrok import run_with_ngrok
+import threading
 
 from config import global_config as cfg
 # from config21 import global_config as cfg  # global, already initialized
 
-
 import warnings
 warnings.filterwarnings("ignore")
-
 
 class Modal(object):
     def __init__(self, device):
@@ -245,10 +243,7 @@ class Modal(object):
                 (time.time()-btm)/60, tr_loss))
             # save model after every epoch
             # if epoch > 30 and tr_loss/epoch_step < 0.6:
-            self.save_model(epoch, tr_loss/epoch_step)
-
-
-
+            self.save_model(epoch, tr_loss/(epoch_step+1))
 
     def train(self):
         """
@@ -365,7 +360,7 @@ class Modal(object):
                 (time.time()-btm)/60, tr_loss))
             # save model after every epoch
             # if epoch > 10 or tr_loss/epoch_step < 1:
-            self.save_model(epoch, tr_loss/epoch_step)
+            self.save_model(epoch, tr_loss/(epoch_step+1))
 
     def save_model(self, epoch, loss):
         save_path = os.path.join(
@@ -498,12 +493,14 @@ class Modal(object):
 
         return eval_results
 
-    def generate_response(self, old_context, original_msg):
+    def generate_response(self, old_context, original_msg, log=False):
         self.model.eval()
         msg = '<sos_u>'+original_msg+'<eos_u>'
         msg = self.tokenizer.encode(msg, add_special_tokens=True)
 
         context = old_context + msg
+        if (log): logging.info("[USER] "+self.tokenizer.decode(context))
+
         context_length = len(context)
         max_len = 60
 
@@ -520,9 +517,10 @@ class Modal(object):
         decoded_output = self.tokenizer.decode(generated)
         decoded_output = decoded_output.split('<sos_r>')[-1]\
                                        .rstrip('<eos_r>')
+        if (log): logging.info("[SYSTEM] "+decoded_output)
         return decoded_output, context
 
-    def web_interface(self):
+    def web_interface(self, plataform=''):
         model = self
         app = Flask(__name__)
 
@@ -543,6 +541,7 @@ class Modal(object):
                                 'response': response,
                                 'context': json.dumps(context)}
                     content = [json.dumps(dictresp), 200]
+                    time.sleep((float(1.0)/float(random.uniform(100,200)))*float(len(response)))
                 else: content = [json.dumps({'success': 'false'}), 500]
             except: content = [json.dumps({'success': 'false'}), 500]
 
@@ -551,11 +550,60 @@ class Modal(object):
             response.headers.add('Access-Control-Allow-Origin', origin)
             return response
 
-        #run_with_ngrok(app)
-        app.run(host="0.0.0.0")
+        try:
+            if (plataform == "colaboratory"):
+                run_with_ngrok(app)
+                app.run()
+            else: app.run(host="0.0.0.0")
+        except KeyboardInterrupt: app.shutdown()
 
-    def demo(self, data='dev'):
-        self.web_interface()
+    def demo(self, data='dev', plataform=''):
+        from telegram import Update
+        from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters, CallbackContext)
+        # predict one dialog/ one turn at a time
+
+        logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+                     level=logging.INFO)
+
+        webinterface = threading.Thread(target=self.web_interface, args=(plataform,))
+        webinterface.start()
+
+        try:
+            with open('telegram.json') as fin:
+                api = json.load(fin)
+            logging.info("***** Running Demo *****")
+            with torch.no_grad():
+                updater = Updater(token=api['token'])
+                dispatcher = updater.dispatcher
+
+                def start(update, context):
+                    context.bot.send_message(chat_id=update.effective_chat.id,
+                                             text="Hi. I am a Ze Carioca, how can I help you?")
+
+                def reply(update: Update, context: CallbackContext) -> str:
+                    msg = update.message.text.lower()
+                    if 'msg' not in context.user_data: context.user_data['msg'] = []
+                    response, context = model.generate_response(context.user_data['msg'], msg, True)
+
+                    context.user_data['msg'] = context
+                    context.bot.send_message(chat_id=update.effective_chat.id, text=response)
+
+                start_handler = CommandHandler('start', start)
+                dispatcher.add_handler(start_handler)
+                reply_handler = MessageHandler(Filters.text & (~Filters.command), reply)
+                dispatcher.add_handler(reply_handler)
+
+                try:
+                    updater.start_polling()
+                    updater.idle()
+                except KeyboardInterrupt: updater = None
+        except Exception as exception: logging.info(str(exception))
+
+        try:
+            while (webinterface.is_alive()): time.sleep(0.1)
+            webinterface = None
+        except KeyboardInterrupt:
+            webinterface = None
 
     def validate(self, data='dev', do_test=False):
         # predict one dialog/ one turn at a time
@@ -765,6 +813,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('-mode')
     parser.add_argument('-cfg', nargs='*')
+    parser.add_argument('-plataform')
     args = parser.parse_args()
 
     cfg.mode = args.mode
@@ -800,7 +849,7 @@ def main():
         if len(cfg.cuda_device) == 1:
             cfg.multi_gpu = False
             # torch.cuda.set_device(cfg.cuda_device[0])
-            device = torch.device("cuda:0".format(cfg.cuda_device[0]))
+            device = torch.device("cuda:{}".format(cfg.cuda_device[0]))
         else:
             pass  # multi-gpu
     else:
@@ -834,7 +883,7 @@ def main():
                             cfg.use_true_curr_bspn, cfg.use_true_curr_aspn, cfg.use_all_previous_context
                         ))
         if cfg.context_scheme == 'UBARU':
-            m.demo()
+            m.demo(plataform=args.plataform)
         else:
             raise NotImplemented("Not running for URURU.")
     else:  # test
