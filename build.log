@@ -1,0 +1,150 @@
+-----> Building on the Heroku-20 stack
+-----> Using buildpack: heroku/python
+-----> Python app detected
+-----> Using Python version specified in runtime.txt
+-----> Requirements file has been changed, clearing cached dependencies
+-----> Installing python-3.7.11
+-----> Installing pip 20.2.4, setuptools 47.1.1 and wheel 0.36.2
+-----> Installing SQLite3
+-----> Installing requirements with pip
+       Collecting torch==1.5.0+cpu
+         Downloading https://download.pytorch.org/whl/cpu/torch-1.5.0%2Bcpu-cp37-cp37m-linux_x86_64.whl (127.3 MB)
+       Collecting spacy
+         Downloading spacy-3.1.1-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (6.4 MB)
+       Collecting transformers
+         Downloading transformers-4.9.2-py3-none-any.whl (2.6 MB)
+       Collecting python-telegram-bot
+         Downloading python_telegram_bot-13.7-py3-none-any.whl (490 kB)
+       Collecting pyunpack
+         Downloading pyunpack-0.2.2-py2.py3-none-any.whl (3.8 kB)
+       Collecting Flask
+         Downloading Flask-2.0.1-py3-none-any.whl (94 kB)
+       Collecting flask-ngrok
+         Downloading flask_ngrok-0.0.25-py3-none-any.whl (3.1 kB)
+       Collecting nltk
+         Downloading nltk-3.6.2-py3-none-any.whl (1.5 MB)
+       Collecting click
+         Downloading click-8.0.1-py3-none-any.whl (97 kB)
+       Collecting future
+         Downloading future-0.18.2.tar.gz (829 kB)
+       Collecting numpy
+         Downloading numpy-1.21.2-cp37-cp37m-manylinux_2_12_x86_64.manylinux2010_x86_64.whl (15.7 MB)
+       Collecting srsly<3.0.0,>=2.4.1
+         Downloading srsly-2.4.1-cp37-cp37m-manylinux2014_x86_64.whl (456 kB)
+       Collecting typer<0.4.0,>=0.3.0
+         Downloading typer-0.3.2-py3-none-any.whl (21 kB)
+       Collecting pathy>=0.3.5
+         Downloading pathy-0.6.0-py3-none-any.whl (42 kB)
+       Collecting spacy-legacy<3.1.0,>=3.0.7
+         Downloading spacy_legacy-3.0.8-py2.py3-none-any.whl (14 kB)
+       Collecting wasabi<1.1.0,>=0.8.1
+         Downloading wasabi-0.8.2-py3-none-any.whl (23 kB)
+       Collecting pydantic!=1.8,!=1.8.1,<1.9.0,>=1.7.4
+         Downloading pydantic-1.8.2-cp37-cp37m-manylinux2014_x86_64.whl (10.1 MB)
+       Collecting blis<0.8.0,>=0.4.0
+         Downloading blis-0.7.4-cp37-cp37m-manylinux2014_x86_64.whl (9.8 MB)
+       Collecting jinja2
+         Downloading Jinja2-3.0.1-py3-none-any.whl (133 kB)
+       Collecting typing-extensions<4.0.0.0,>=3.7.4; python_version < "3.8"
+         Downloading typing_extensions-3.10.0.0-py3-none-any.whl (26 kB)
+       Collecting cymem<2.1.0,>=2.0.2
+         Downloading cymem-2.0.5-cp37-cp37m-manylinux2014_x86_64.whl (35 kB)
+       Collecting tqdm<5.0.0,>=4.38.0
+         Downloading tqdm-4.62.1-py2.py3-none-any.whl (76 kB)
+       Collecting preshed<3.1.0,>=3.0.2
+         Downloading preshed-3.0.5-cp37-cp37m-manylinux2014_x86_64.whl (126 kB)
+       Collecting packaging>=20.0
+         Downloading packaging-21.0-py3-none-any.whl (40 kB)
+       Collecting murmurhash<1.1.0,>=0.28.0
+         Downloading murmurhash-1.0.5-cp37-cp37m-manylinux2014_x86_64.whl (20 kB)
+       Collecting catalogue<2.1.0,>=2.0.4
+         Downloading catalogue-2.0.5-py3-none-any.whl (17 kB)
+       Collecting thinc<8.1.0,>=8.0.8
+         Downloading thinc-8.0.8-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (621 kB)
+       Collecting requests<3.0.0,>=2.13.0
+         Downloading requests-2.26.0-py2.py3-none-any.whl (62 kB)
+       Collecting importlib-metadata; python_version < "3.8"
+         Downloading importlib_metadata-4.6.4-py3-none-any.whl (17 kB)
+       Collecting huggingface-hub==0.0.12
+         Downloading huggingface_hub-0.0.12-py3-none-any.whl (37 kB)
+       Collecting regex!=2019.12.17
+         Downloading regex-2021.8.3-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (722 kB)
+       Collecting sacremoses
+         Downloading sacremoses-0.0.45-py3-none-any.whl (895 kB)
+       Collecting tokenizers<0.11,>=0.10.1
+         Downloading tokenizers-0.10.3-cp37-cp37m-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl (3.3 MB)
+       Collecting pyyaml>=5.1
+         Downloading PyYAML-5.4.1-cp37-cp37m-manylinux1_x86_64.whl (636 kB)
+       Collecting filelock
+         Downloading filelock-3.0.12-py3-none-any.whl (7.6 kB)
+       Collecting APScheduler==3.6.3
+         Downloading APScheduler-3.6.3-py2.py3-none-any.whl (58 kB)
+       Collecting pytz>=2018.6
+         Downloading pytz-2021.1-py2.py3-none-any.whl (510 kB)
+       Collecting tornado>=6.1
+         Downloading tornado-6.1-cp37-cp37m-manylinux2010_x86_64.whl (428 kB)
+       Collecting certifi
+         Downloading certifi-2021.5.30-py2.py3-none-any.whl (145 kB)
+       Collecting cachetools==4.2.2
+         Downloading cachetools-4.2.2-py3-none-any.whl (11 kB)
+       Collecting easyprocess
+         Downloading EasyProcess-0.3-py2.py3-none-any.whl (7.9 kB)
+       Collecting entrypoint2
+         Downloading entrypoint2-0.2.4-py3-none-any.whl (6.2 kB)
+       Collecting itsdangerous>=2.0
+         Downloading itsdangerous-2.0.1-py3-none-any.whl (18 kB)
+       Collecting Werkzeug>=2.0
+         Downloading Werkzeug-2.0.1-py3-none-any.whl (288 kB)
+       Collecting joblib
+         Downloading joblib-1.0.1-py3-none-any.whl (303 kB)
+       Collecting smart-open<6.0.0,>=5.0.0
+         Downloading smart_open-5.2.0-py3-none-any.whl (58 kB)
+       Collecting MarkupSafe>=2.0
+         Downloading MarkupSafe-2.0.1-cp37-cp37m-manylinux2010_x86_64.whl (31 kB)
+       Collecting pyparsing>=2.0.2
+         Downloading pyparsing-2.4.7-py2.py3-none-any.whl (67 kB)
+       Collecting zipp>=0.5; python_version < "3.8"
+         Downloading zipp-3.5.0-py3-none-any.whl (5.7 kB)
+       Collecting charset-normalizer~=2.0.0; python_version >= "3"
+         Downloading charset_normalizer-2.0.4-py3-none-any.whl (36 kB)
+       Collecting idna<4,>=2.5; python_version >= "3"
+         Downloading idna-3.2-py3-none-any.whl (59 kB)
+       Collecting urllib3<1.27,>=1.21.1
+         Downloading urllib3-1.26.6-py2.py3-none-any.whl (138 kB)
+       Collecting six
+         Downloading six-1.16.0-py2.py3-none-any.whl (11 kB)
+       Collecting tzlocal>=1.2
+         Downloading tzlocal-3.0-py3-none-any.whl (16 kB)
+       Collecting backports.zoneinfo; python_version < "3.9"
+         Downloading backports.zoneinfo-0.2.1-cp37-cp37m-manylinux1_x86_64.whl (70 kB)
+       Building wheels for collected packages: future
+         Building wheel for future (setup.py): started
+         Building wheel for future (setup.py): finished with status 'done'
+         Created wheel for future: filename=future-0.18.2-py3-none-any.whl size=491059 sha256=76e2f7b825709362146fb70fe252c863cc02a5c11bbf9abad29d03fd42d91c4a
+         Stored in directory: /tmp/pip-ephem-wheel-cache-iap76zmi/wheels/56/b0/fe/4410d17b32f1f0c3cf54cdfb2bc04d7b4b8f4ae377e2229ba0
+       Successfully built future
+       Installing collected packages: future, numpy, torch, zipp, typing-extensions, catalogue, srsly, importlib-metadata, click, typer, smart-open, pathy, spacy-legacy, wasabi, pydantic, blis, MarkupSafe, jinja2, cymem, tqdm, murmurhash, preshed, pyparsing, packaging, thinc, charset-normalizer, idna, urllib3, certifi, requests, spacy, filelock, huggingface-hub, regex, joblib, six, sacremoses, tokenizers, pyyaml, transformers, pytz, backports.zoneinfo, tzlocal, APScheduler, tornado, cachetools, python-telegram-bot, easyprocess, entrypoint2, pyunpack, itsdangerous, Werkzeug, Flask, flask-ngrok, nltk
+       ERROR: After October 2020 you may experience errors when installing or updating packages. This is because pip will change the way that it resolves dependency conflicts.
+       
+       We recommend you use --use-feature=2020-resolver to test your packages with the new resolver before it becomes the default.
+       
+       typer 0.3.2 requires click<7.2.0,>=7.1.1, but you'll have click 8.0.1 which is incompatible.
+       Successfully installed APScheduler-3.6.3 Flask-2.0.1 MarkupSafe-2.0.1 Werkzeug-2.0.1 backports.zoneinfo-0.2.1 blis-0.7.4 cachetools-4.2.2 catalogue-2.0.5 certifi-2021.5.30 charset-normalizer-2.0.4 click-8.0.1 cymem-2.0.5 easyprocess-0.3 entrypoint2-0.2.4 filelock-3.0.12 flask-ngrok-0.0.25 future-0.18.2 huggingface-hub-0.0.12 idna-3.2 importlib-metadata-4.6.4 itsdangerous-2.0.1 jinja2-3.0.1 joblib-1.0.1 murmurhash-1.0.5 nltk-3.6.2 numpy-1.21.2 packaging-21.0 pathy-0.6.0 preshed-3.0.5 pydantic-1.8.2 pyparsing-2.4.7 python-telegram-bot-13.7 pytz-2021.1 pyunpack-0.2.2 pyyaml-5.4.1 regex-2021.8.3 requests-2.26.0 sacremoses-0.0.45 six-1.16.0 smart-open-5.2.0 spacy-3.1.1 spacy-legacy-3.0.8 srsly-2.4.1 thinc-8.0.8 tokenizers-0.10.3 torch-1.5.0+cpu tornado-6.1 tqdm-4.62.1 transformers-4.9.2 typer-0.3.2 typing-extensions-3.10.0.0 tzlocal-3.0 urllib3-1.26.6 wasabi-0.8.2 zipp-3.5.0
+-----> Downloading NLTK corpora…
+-----> Downloading NLTK packages: wordnet pros_cons reuters
+/app/.heroku/python/lib/python3.7/runpy.py:125: RuntimeWarning: 'nltk.downloader' found in sys.modules after import of package 'nltk', but prior to execution of 'nltk.downloader'; this may result in unpredictable behaviour
+  warn(RuntimeWarning(msg))
+[nltk_data] Downloading package wordnet to
+[nltk_data]     /tmp/build_5c9f9b66/.heroku/python/nltk_data...
+[nltk_data]   Unzipping corpora/wordnet.zip.
+[nltk_data] Downloading package pros_cons to
+[nltk_data]     /tmp/build_5c9f9b66/.heroku/python/nltk_data...
+[nltk_data]   Unzipping corpora/pros_cons.zip.
+[nltk_data] Downloading package reuters to
+[nltk_data]     /tmp/build_5c9f9b66/.heroku/python/nltk_data...
+-----> Discovering process types
+       Procfile declares types -> web
+-----> Compressing...
+ !     Compiled slug size: 588.1M is too large (max is 500M).
+ !     See: http://devcenter.heroku.com/articles/slug-size
+ !     Push failed
